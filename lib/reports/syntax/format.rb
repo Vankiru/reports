@@ -3,10 +3,15 @@
 module Reports
   module Syntax
     module Format
-      def format(params, &block)
-        format = Structure::Format.new(params, block)
-
-        structure.formats[name] = format
+      # @example
+      #   format :date do
+      #     # defines the format
+      #   end
+      #
+      # @param [Symbol] name
+      # @param [Proc] block
+      def format(name, &block)
+        structure.formats[name] = Structure::Format.new(name: name, block: block)
       end
     end
   end

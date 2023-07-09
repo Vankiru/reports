@@ -2,9 +2,7 @@
 
 module Reports
   class Structure
-    class Cell < Node
-      attribute :reference
-      attribute :format
+    class Data < Node
       attribute :data
     end
   end

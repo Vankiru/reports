@@ -3,6 +3,7 @@
 module Reports
   class Structure
     class Worksheet < Node
+      attribute :name
       attribute :data
       attribute :formatter
       attribute :tables, type: Array

@@ -1,52 +1,4 @@
 class Report
-  worksheet 'Users' do
-    data UserData
-    formatter UserFormatter
-
-    formatter do
-      format :data do |args|
-      end
-
-      format :currency do |args|
-      end
-    end
-
-    data do |params|
-      User.where(params)
-    end
-
-    column 'Email', format: :string do |user|
-      user.email
-    end
-
-    column 'Name' do |user|
-      user.name
-    end
-
-    column 'Address' do |user|
-      user.address
-    end
-
-    column 'Date of Birth', format: :date do |user|
-      user.birth_date
-    end
-
-    column 'Email', :email
-    column 'Name', :name
-    column 'Address', :address
-    column 'Date of Birth', :birth_date, format: :date
-
-    column :email
-    column :name
-    column :address
-    column :birth_date, format: :date
-
-    column :email, header: 'Email'
-    column :name, header: 'Name'
-    column :address, header: 'address'
-    column :birth_date, header: 'Birth Date', format: :date
-  end
-
   worksheet "Contact" do
     data ContactsData
 
@@ -160,10 +112,20 @@ class Report
     range do
     end
   end
-end
 
-class UserData < Report::Data
-end
+  column :email
+  column :email, header: 'Email'
 
-class UserFormatter < Report::Formatter
+  column 'Email' do
+  end
+
+  column 'Start Date' do
+  end
+
+  cell :emai
+  cell :email, format: :string
+
+  cell format: :string do |data|
+    data.email
+  end
 end
