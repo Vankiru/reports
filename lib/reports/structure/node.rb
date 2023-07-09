@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 module Reports
+  class Structure
+    class Node
+      def initialize()
+      end
+    end
+  end
+end
+
+#
+
+module Reports
   class Tree
     class Node
       def initialize(type:, params:)

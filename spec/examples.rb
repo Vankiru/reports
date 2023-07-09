@@ -47,7 +47,6 @@ class Report
     column :birth_date, header: 'Birth Date', format: :date
   end
 
-
   worksheet "Contact" do
     data ContactsData
 

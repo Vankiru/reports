@@ -2,14 +2,14 @@
 
 module Reports
   module Syntax
-    module Formatter
-      def formatter(klass, &block)
+    module Table
+      def table(klass, &block)
         if block_given?
-          klass = Class.new(Reports::Formatter)
+          klass = Class.new(Reports::Table)
           klass.instance_eval(&block)
         end
 
-        structure.formatter = klass.structure
+        structure.tables.add(klass.structure)
       end
     end
   end
