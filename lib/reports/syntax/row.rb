@@ -6,7 +6,7 @@ module Reports
       def row(params, &block)
         column = Structure::Row.new(params, block)
 
-        structure.rows.add(column)
+        structure.rows << column
       end
     end
   end

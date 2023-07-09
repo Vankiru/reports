@@ -4,9 +4,11 @@ module Reports
   module Syntax
     module Column
       def column(params, &block)
-        column = Structure::Column.new(params, block)
+        column = Structure::Column.new(
+          params, block
+        )
 
-        structure.columns.add(column)
+        structure.columns << column
       end
     end
   end

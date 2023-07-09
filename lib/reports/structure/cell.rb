@@ -2,10 +2,11 @@
 
 module Reports
   class Structure
-    class Column < Node
-      :reference
-      :format
-      :data # call
+    class Cell < Node
+      attribute :header
+      attribute :reference
+      attribute :format
+      attribute :data
     end
   end
 end

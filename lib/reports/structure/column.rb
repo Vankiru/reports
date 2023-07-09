@@ -3,10 +3,10 @@
 module Reports
   class Structure
     class Column < Node
-      :header
-      :reference
-      :format
-      :data # call
+      attribute :header
+      attribute :reference
+      attribute :format
+      attribute :data
     end
   end
 end

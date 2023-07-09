@@ -6,7 +6,7 @@ module Reports
       def format(params, &block)
         format = Structure::Format.new(params, block)
 
-        structure.formats.add(format)
+        structure.formats[name] = format
       end
     end
   end
