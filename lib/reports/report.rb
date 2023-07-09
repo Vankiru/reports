@@ -20,7 +20,6 @@ module Reports
       @data = data
     end
 
-    def render(options)
-    end
+    def render(options); end
   end
 end

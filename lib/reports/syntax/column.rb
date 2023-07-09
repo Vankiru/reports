@@ -23,8 +23,8 @@ module Reports
       # @option params [Symbol] :format
       # @option params [Symbol] :reference
       # @param [Proc] block
-      def column(name, params, &block)
-        column = 
+      def column(name, params = {}, &block)
+        column =
           Structure::Column.new(
             header: block_given? ? name : params[:header],
             reference: params[:reference],

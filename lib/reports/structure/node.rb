@@ -5,44 +5,44 @@ module Reports
     class Node
       class << self
         def attribute(name, type: nil)
-          attributes << name
-          variable = "@#{variable}"
+          attributes[name] = type
 
-          define_method name do
-            if defined?(variable)
-              instance_variable_get(variable) 
-            else
-              instance_variable_set(variable, type ? type.new : nil)
-            end
-          end
+          attr_reader name
         end
 
         def attributes
-          @attributes ||= []
+          @attributes ||= {}
         end
       end
 
       def initialize(**attributes)
-        self.class.attributes.each do |name|
-          instance_variable_set("@#{name}", attributes[name])
+        self.class.attributes.each do |name, type|
+          value =
+            if attributes.has_key?(name)
+              attributes[name]
+            else
+              type ? type.new : nil
+            end
+
+          instance_variable_set("@#{name}", value)
         end
       end
 
-      #def traverse(&block)
-        #yield self if block_given?
+      # def traverse(&block)
+      # yield self if block_given?
 
-        #@chidlren.each do |child|
-          #child.traverse(&block)
-        #end
-      #end
+      # @chidlren.each do |child|
+      # child.traverse(&block)
+      # end
+      # end
 
-      #def leaf?
-        #@children.empty?
-      #end
+      # def leaf?
+      # @children.empty?
+      # end
 
-      #def internal?
-        #!leaf?
-      #end
+      # def internal?
+      # !leaf?
+      # end
     end
   end
 end

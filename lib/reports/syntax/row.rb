@@ -23,8 +23,8 @@ module Reports
       # @option params [Symbol] :format
       # @option params [Symbol] :reference
       # @param [Proc] block
-      def row(name, params, &block)
-        row = 
+      def row(name, params = {}, &block)
+        row =
           Structure::Row.new(
             header: block_given? ? name : params[:header],
             reference: params[:reference],
@@ -32,7 +32,7 @@ module Reports
             data: block_given? ? block : name.to_proc
           )
 
-        structure.rows << rows
+        structure.rows << row
       end
     end
   end

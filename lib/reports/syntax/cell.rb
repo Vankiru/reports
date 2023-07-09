@@ -22,12 +22,14 @@ module Reports
       # @option params [Symbol] :format
       # @option params [Symbol] :reference
       # @param [Proc] block
-      def cell(name, params, &block)
-        cell = 
+      def cell(name = nil, params = {}, &block)
+        params = name if name.is_a?(Hash)
+
+        cell =
           Structure::Cell.new(
             format: params[:format],
             reference: params[:reference],
-            data: name ? name.to_proc : block
+            data: name.is_a?(Symbol) ? name.to_proc : block
           )
 
         structure.cells << cell

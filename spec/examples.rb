@@ -1,5 +1,5 @@
 class Report
-  worksheet "Contact" do
+  worksheet 'Contact' do
     data ContactsData
 
     column do |contact|
@@ -19,13 +19,13 @@ class Report
     end
   end
 
-  worksheet "Loans" do
+  worksheet 'Loans' do
     headers true
 
-    column :total_amount, header: "Loan Amount"
-    column :term, header: "Term"
-    column :interest_rate, header: "Interest Rate"
-    column :origination_fee, header: "Origination Fee"
+    column :total_amount, header: 'Loan Amount'
+    column :term, header: 'Term'
+    column :interest_rate, header: 'Interest Rate'
+    column :origination_fee, header: 'Origination Fee'
   end
 
   worksheet do
@@ -72,19 +72,19 @@ class Report
       quotation.valid_until
     end
 
-    cell "G#{START_INDEX + 2 + quotation.lots.count}" do |quation|
+    cell "G#{START_INDEX + 2 + quotation.lots.count}" do |_quation|
       "=SUM(G16:G#{START_INDEX + 1 + quotation.lots.count})"
     end
 
-    cell "G#{START_INDEX + 3 + quotation.lots.count}" do |quation|
+    cell "G#{START_INDEX + 3 + quotation.lots.count}" do |_quation|
       number_to_percentage(quotation.deal.vat_value)
     end
 
-    cell "E#{START_INDEX + 11 + quotation.lots.count}" do |quation|
+    cell "E#{START_INDEX + 11 + quotation.lots.count}" do |_quation|
       quotation.payment_terms
     end
 
-    cell "C#{START_INDEX + 12 + quotation.lots.count}" do |quation|
+    cell "C#{START_INDEX + 12 + quotation.lots.count}" do |_quation|
       advance_payment(quotation)
     end
   end
@@ -95,18 +95,18 @@ class Report
       end
     end
 
-    table "C:E" do
+    table 'C:E' do
       row do
       end
     end
 
-    table "C:" do
+    table 'C:' do
     end
 
-    table ":E" do
+    table ':E' do
     end
 
-    table "3:6" do
+    table '3:6' do
     end
 
     range do

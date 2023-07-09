@@ -31,7 +31,7 @@ module Reports
       #
       # @param [Class] klass
       # @param [Proc] block
-      def table(klass, &block)
+      def table(klass = nil, &block)
         if block_given?
           klass = Class.new(Reports::Table)
           klass.instance_eval(&block)

@@ -38,7 +38,7 @@ module Reports
       #
       # @param [Class] klass
       # @param [Proc] block
-      def worksheet(name, klass, &block)
+      def worksheet(_name = nil, klass = nil, &block)
         if block_given?
           klass = Class.new(Reports::Worksheet)
           klass.instance_eval(&block)
