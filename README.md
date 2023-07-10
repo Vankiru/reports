@@ -13,7 +13,7 @@ A report consists of four parts:
   - renderer renders a report in a particular format.
 
 ```ruby
-class UserReport < Report
+class UserReport < Reports::Report
   worksheet 'Users' do
     data do |params|
       User.where(params)
@@ -33,11 +33,11 @@ xslx = report.render(:xlsx)
 
 ## Roadmap
 
-[x] Introduce and implenet the reports structure
-[ ] Validate the report to make sure that its structure, references and formats are valid and do not conflict with each other.
-[ ] Introduce an API for create and registering a report renderer.
-[ ] Implement a CSV renderer.
-[ ] Implement an Excel renderer.
+- [x] Introduce and implenet the reports structure.
+- [ ] Implement report validation to make sure that its structure, references and formats are valid and do not conflict with each other.
+- [ ] Introduce an API for creating and registering a report renderer.
+- [ ] Implement a CSV renderer.
+- [ ] Implement an Excel renderer.
 
 ## Syntax
 
@@ -80,7 +80,7 @@ Or in a separate class
 ```ruby
 formatter UserFormatter
 
-class UserFormatter
+class UserFormatter < Reports::Formatter
   format :currency do |value|
     number_to_currency(value)
   end
@@ -89,11 +89,11 @@ end
 
 ### Worksheets
 
-If a report format supports worksheets (e.g. Excel), it allows to add multiple worksheets to it.
-You can define one table with `columns`, `rows` or `cell` or multiple tables with `table`.
+If a report renderer supports worksheets (e.g. Excel), it allows to add multiple worksheets to it.
+You can define one table with `columns`, `rows` or `cell`, or multiple tables with `table`.
 
 ```ruby
-class UserReport do
+class UserReport < Reports::Report
   worksheet 'Users' do
     column :name, header: 'Name'
     column :email, header: 'Email'
@@ -126,7 +126,7 @@ It allows to add tables to a report. Why do we need `table` if we can just use `
 a report must contain multiple tables with different data and formatting.
 
 ```ruby
-class UserReport do
+class UserReport < Reports::Report
   table do
     column :name, header: 'Name'
     column :email, header: 'Email'
@@ -223,3 +223,7 @@ Options:
 
 - `format` - a format that will be applied to the column. For example, `:date`, `:number`.
 - `reference` - the column address where data will be rendered. For example, `'A1'`, `:B3`.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
