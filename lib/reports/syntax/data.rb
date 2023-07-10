@@ -1,8 +1,8 @@
-# frozen_string_literal: true
-
 module Reports
   module Syntax
     module Data
+      # Defines data for a report
+      #
       # @example with a class
       #   data UserData
       #
@@ -17,10 +17,12 @@ module Reports
       #     User.where(params)
       #   end
       #
-      # @param [Class] klass
-      # @param [Proc] block
-      def data(klass, &block)
-        structure.data = Structure::Data.new(data: klass ? klass.new : block)
+      # @param [Class] klass (nil) The name of a class that defines report data
+      # @param [Proc] block A block that defines report data
+      def data(klass = nil, &block)
+        data = block_given? ? block : klass&.new
+
+        structure.data = Structure::Data.new(data: data)
       end
     end
   end

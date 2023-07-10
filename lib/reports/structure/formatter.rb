@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 module Reports
   class Structure
-    class Formatter < Node
+    class Formatter < Structure
       attribute :formats, type: Hash
     end
   end

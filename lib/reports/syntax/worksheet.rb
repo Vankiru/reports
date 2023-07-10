@@ -1,8 +1,8 @@
-# frozen_string_literal: true
-
 module Reports
   module Syntax
     module Worksheet
+      # Defines a worksheet
+      #
       # @example with a class
       #   worksheet 'Users', UserWorksheet
       #
@@ -19,7 +19,9 @@ module Reports
       #     column :phone
       #   end
       #
-      # @example worksheet can define tables, data and formatters that will specific for this worksheet
+      # @example worksheet can define tables, data and formatters that 
+      #   will be specific for this worksheet
+      #
       #   worksheet 'Users' do
       #     data UserData
       #     formatter UserFormatter
@@ -36,8 +38,9 @@ module Reports
       #     end
       #   end
       #
-      # @param [Class] klass
-      # @param [Proc] block
+      # @param [Class] name The worksheet name
+      # @param [Class] klass (nil) The name of a class that defines the worksheet
+      # @param [Proc] block Block that defines the worksheet
       def worksheet(_name = nil, klass = nil, &block)
         if block_given?
           klass = Class.new(Reports::Worksheet)

@@ -27,6 +27,14 @@ describe Reports::Report do
     it 'does not define any cells' do
       expect(structure.cells).to be_empty
     end
+
+    it 'does not define data' do
+      expect(structure.data).to be_nil
+    end
+
+    it 'does not define formatter' do
+      expect(structure.formatter).to be_nil
+    end
   end
 
   context 'when report has worksheets defined' do
@@ -48,18 +56,6 @@ describe Reports::Report do
         be_kind_of(Reports::Structure::Worksheet),
         be_kind_of(Reports::Structure::Worksheet)
       ])
-    end
-
-    it 'does not define any columns' do
-      expect(structure.columns).to be_empty
-    end
-
-    it 'does not define any rows' do
-      expect(structure.rows).to be_empty
-    end
-
-    it 'does not define any cells' do
-      expect(structure.cells).to be_empty
     end
   end
 
@@ -83,22 +79,6 @@ describe Reports::Report do
         be_kind_of(Reports::Structure::Table)
       ])
     end
-
-    it 'does not define any worksheets' do
-      expect(structure.worksheets).to be_empty
-    end
-
-    it 'does not define any columns' do
-      expect(structure.columns).to be_empty
-    end
-
-    it 'does not define any rows' do
-      expect(structure.rows).to be_empty
-    end
-
-    it 'does not define any cells' do
-      expect(structure.cells).to be_empty
-    end
   end
 
   context 'when report has columns defined' do
@@ -116,22 +96,6 @@ describe Reports::Report do
         be_kind_of(Reports::Structure::Column),
         be_kind_of(Reports::Structure::Column)
       ])
-    end
-
-    it 'does not define any worksheets' do
-      expect(structure.worksheets).to be_empty
-    end
-
-    it 'does not define tables' do
-      expect(structure.tables).to be_empty
-    end
-
-    it 'does not define any rows' do
-      expect(structure.rows).to be_empty
-    end
-
-    it 'does not define any cells' do
-      expect(structure.cells).to be_empty
     end
   end
 
@@ -151,22 +115,6 @@ describe Reports::Report do
         be_kind_of(Reports::Structure::Row)
       ])
     end
-
-    it 'does not define any worksheets' do
-      expect(structure.worksheets).to be_empty
-    end
-
-    it 'does not define tables' do
-      expect(structure.tables).to be_empty
-    end
-
-    it 'does not define any columns' do
-      expect(structure.columns).to be_empty
-    end
-
-    it 'does not define any cells' do
-      expect(structure.cells).to be_empty
-    end
   end
 
   context 'when report has cells defined' do
@@ -185,21 +133,35 @@ describe Reports::Report do
         be_kind_of(Reports::Structure::Cell)
       ])
     end
+  end
 
-    it 'does not define any worksheets' do
-      expect(structure.worksheets).to be_empty
+  context 'when report has data defined' do
+    subject(:report) do
+      Class.new(Reports::Report) do
+        data do
+          [1, 2, 3]
+        end
+      end
     end
 
-    it 'does not define tables' do
-      expect(structure.tables).to be_empty
+    it 'defines data' do
+      expect(structure.data).to be_kind_of(Reports::Structure::Data)
+    end
+  end
+
+  context 'when report has formatter defined' do
+    subject(:report) do
+      Class.new(Reports::Report) do
+        formatter do
+          format :string do |value|
+            value.to_s
+          end
+        end
+      end
     end
 
-    it 'does not define any columns' do
-      expect(structure.columns).to be_empty
-    end
-
-    it 'does not define any rows' do
-      expect(structure.rows).to be_empty
+    it 'defines formatter' do
+      expect(structure.formatter).to be_kind_of(Reports::Structure::Formatter)
     end
   end
 end

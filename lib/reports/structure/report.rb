@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 module Reports
   class Structure
-    class Report < Node
+    class Report < Structure
       attribute :data
       attribute :formatter
       attribute :worksheets, type: Array

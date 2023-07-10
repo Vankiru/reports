@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Reports
   class Report
     extend Syntax::Data

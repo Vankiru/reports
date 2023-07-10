@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 module Reports
   class Structure
-    class Data < Node
+    class Data < Structure
       attribute :data
     end
   end

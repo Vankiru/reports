@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 module Reports
   class Structure
-    class Column < Node
+    class Column < Structure
       attribute :header
       attribute :reference
       attribute :format

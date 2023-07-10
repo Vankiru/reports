@@ -19,6 +19,14 @@ describe 'table' do
     it 'does not define any cells' do
       expect(structure.cells).to be_empty
     end
+
+    it 'does not define data' do
+      expect(structure.data).to be_nil
+    end
+
+    it 'does not define formatter' do
+      expect(structure.formatter).to be_nil
+    end
   end
 
   context 'when table has columns defined' do
@@ -36,14 +44,6 @@ describe 'table' do
         be_kind_of(Reports::Structure::Column),
         be_kind_of(Reports::Structure::Column)
       ])
-    end
-
-    it 'does not define any rows' do
-      expect(structure.rows).to be_empty
-    end
-
-    it 'does not define any cells' do
-      expect(structure.cells).to be_empty
     end
   end
 
@@ -63,14 +63,6 @@ describe 'table' do
         be_kind_of(Reports::Structure::Row)
       ])
     end
-
-    it 'does not define any columns' do
-      expect(structure.columns).to be_empty
-    end
-
-    it 'does not define any cells' do
-      expect(structure.cells).to be_empty
-    end
   end
 
   context 'when table has cells defined' do
@@ -89,13 +81,35 @@ describe 'table' do
         be_kind_of(Reports::Structure::Cell)
       ])
     end
+  end
 
-    it 'does not define any columns' do
-      expect(structure.columns).to be_empty
+  context 'when table has data defined' do
+    subject(:table) do
+      Class.new(Reports::Table) do
+        data do
+          [1, 2, 3]
+        end
+      end
     end
 
-    it 'does not define any rows' do
-      expect(structure.rows).to be_empty
+    it 'defines data' do
+      expect(structure.data).to be_kind_of(Reports::Structure::Data)
+    end
+  end
+
+  context 'when table has formatter defined' do
+    subject(:table) do
+      Class.new(Reports::Table) do
+        formatter do
+          format :string do |value|
+            value.to_s
+          end
+        end
+      end
+    end
+
+    it 'defines formatter' do
+      expect(structure.formatter).to be_kind_of(Reports::Structure::Formatter)
     end
   end
 end

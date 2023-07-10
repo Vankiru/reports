@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
 module Reports
-  module Errors
-  end
+  class Error < StandardError; end
 end

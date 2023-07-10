@@ -1,15 +1,15 @@
-# frozen_string_literal: true
-
 module Reports
   module Syntax
     module Format
+      # Defines an individual format
+      #
       # @example
-      #   format :date do
-      #     # defines the format
+      #   format :string do |value|
+      #     value.to_s
       #   end
       #
-      # @param [Symbol] name
-      # @param [Proc] block
+      # @param [Symbol] name Format name
+      # @param [Proc] block Block that defines the format
       def format(name, &block)
         structure.formats[name] = Structure::Format.new(name: name, block: block)
       end

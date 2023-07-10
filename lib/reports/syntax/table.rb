@@ -1,8 +1,8 @@
-# frozen_string_literal: true
-
 module Reports
   module Syntax
     module Table
+      # Defines a table
+      #
       # @example with a class
       #   table UserTable
       #
@@ -19,7 +19,9 @@ module Reports
       #     column :phone
       #   end
       #
-      # @example table can define data and formatters that will specific for this table
+      # @example table can define data and formatters that 
+      #   will specific for this table
+      #
       #   table do
       #     data UserData
       #     formatter UserFormatter
@@ -29,8 +31,8 @@ module Reports
       #     column :phone
       #   end
       #
-      # @param [Class] klass
-      # @param [Proc] block
+      # @param [Class] klass (nil) The name of a class that defines the table
+      # @param [Proc] block Block that defines the table
       def table(klass = nil, &block)
         if block_given?
           klass = Class.new(Reports::Table)

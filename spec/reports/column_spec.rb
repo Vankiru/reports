@@ -52,6 +52,18 @@ describe 'column' do
         expect(column.data.call(user)).to eq('john.doe@mail.com')
       end
     end
+
+    context 'and name is a string' do
+      subject(:table) do
+        Class.new(Reports::Table) do
+          column 'email'
+        end
+      end
+
+      it 'sets column data to name.to_proc' do
+        expect(column.data.call(user)).to eq('john.doe@mail.com')
+      end
+    end
   end
 
   context 'when column is defined with a block' do

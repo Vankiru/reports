@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 module Reports
   class Structure
-    class Table < Node
+    class Table < Structure
       attribute :data
       attribute :formatter
       attribute :columns, type: Array
